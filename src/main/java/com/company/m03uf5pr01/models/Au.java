@@ -72,4 +72,12 @@ public class Au extends Animal implements Aeri {
 
         return random < this.ratioRepeticioAtac;
     }
+
+    public boolean isUrpesTrencades() {
+        return urpesTrencades;
+    }
+
+    public float getRatioRepeticioAtac() {
+        return ratioRepeticioAtac;
+    }
 }

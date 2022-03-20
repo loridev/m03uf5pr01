@@ -63,4 +63,8 @@ public class Mamifer extends Animal implements Terrestre {
         }
         this.atacar(this.atac * multiplicador, objectiu);
     }
+
+    public float getMultiplicadorPuny() {
+        return multiplicadorPuny;
+    }
 }
