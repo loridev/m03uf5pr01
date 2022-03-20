@@ -53,4 +53,8 @@ public class Reptil extends Animal implements Verinos {
         }
         return random < this.precissioVeri;
     }
+
+    public float getPrecissioVeri() {
+        return precissioVeri;
+    }
 }

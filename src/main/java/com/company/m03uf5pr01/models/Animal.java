@@ -1,9 +1,13 @@
 package com.company.m03uf5pr01.models;
 
+import com.company.m03uf5pr01.interfaces.JSONable;
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+
 /**
  * Classe que representa un Animal al joc
  */
-public abstract class Animal {
+public abstract class Animal implements JSONable {
     /** Nom d'un Animal */
     protected String nom;
     /** Nivell d'un Animal */
@@ -81,6 +85,15 @@ public abstract class Animal {
      * Mètode que controla els atributs que pugen quan un Animal guanya un combat
      */
     protected abstract void pujarNivell();
+
+    @Override
+    public String toJSON() {
+        return new Gson().toJson(this);
+    }
+
+    public void fromJSON(String json) {
+        new Gson().fromJson(json, this.getClass());
+    }
 
     /**
      * Mètode setter de l'atribut Propietari
