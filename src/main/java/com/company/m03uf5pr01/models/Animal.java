@@ -99,4 +99,36 @@ public abstract class Animal {
     public String getNom() {
         return nom;
     }
+
+    public int getNivell() {
+        return nivell;
+    }
+
+    public float getAtac() {
+        return atac;
+    }
+
+    public float getDefensa() {
+        return defensa;
+    }
+
+    public float getPrecisio() {
+        return precisio;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public boolean isEnverinat() {
+        return enverinat;
+    }
+
+    public Propietari getPropietari() {
+        return propietari;
+    }
+
+    public TipusAnimal getTipus() {
+        return tipus;
+    }
 }

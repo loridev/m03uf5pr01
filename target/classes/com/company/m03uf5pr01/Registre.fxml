@@ -4,12 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="221.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fightgame.LoginController">
+<AnchorPane prefHeight="221.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.m03uf5pr01.controllers.RegisterController">
    <children>
       <Label layoutX="13.0" layoutY="40.0" prefHeight="17.0" prefWidth="140.0" text="Nombre de Usuario" />
       <Label layoutX="54.0" layoutY="91.0" prefHeight="17.0" prefWidth="63.0" text="Contraseña" />
       <TextField fx:id="usr" layoutX="127.0" layoutY="36.0" />
       <PasswordField fx:id="pwd" layoutX="127.0" layoutY="87.0" />
-      <Button fx:id="bt_login" layoutX="128.0" layoutY="139.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="149.0" text="Registrarse" />
+      <Button fx:id="register_btn" layoutX="128.0" layoutY="139.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="149.0" text="Registrarse" />
    </children>
 </AnchorPane>

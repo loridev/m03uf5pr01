@@ -1,7 +1,5 @@
 package com.company.m03uf5pr01.models;
 
-import com.company.utils.Colors;
-
 import java.util.ArrayList;
 
 /**
@@ -9,7 +7,9 @@ import java.util.ArrayList;
  */
 public class Propietari {
     /** Nom d'un Propietari */
-    private final String nom;
+    private String nom;
+    /** Contrasenya d'un propietari */
+    private final String password;
     /** Diners d'un Propietari */
     private float diners;
     /** Mascotes d'un Propietari */
@@ -20,8 +20,9 @@ public class Propietari {
      *
      * @param nom Nom d'un Propietari
      */
-    public Propietari(String nom) {
+    public Propietari(String nom, String password) {
         this.nom = nom;
+        this.password = password;
         this.mascotes = new ArrayList<>();
     }
 
@@ -42,6 +43,10 @@ public class Propietari {
      */
     public String getNom() {
         return nom;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -71,13 +76,12 @@ public class Propietari {
         return mascotes;
     }
 
-    /**
-     * Mètode toString d'un Propietari
-     *
-     * @return Representació d'un Propietari
-     */
-    public String toString() {
-        return "nom = " + Colors.BLAU + this.nom + Colors.RESET +
-                ", diners = " + Colors.BLAU + this.diners  + Colors.RESET;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Propietari) {
+            return ((Propietari) obj).nom.equals(this.nom);
+        } else {
+            return false;
+        }
     }
 }
