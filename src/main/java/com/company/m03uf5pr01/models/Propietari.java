@@ -19,9 +19,9 @@ public class Propietari implements JSONable {
     /** Contrasenya d'un propietari */
     private final String password;
     /** Diners d'un Propietari */
-    private float diners;
+    private int diners = 50;
     /** Mascotes d'un Propietari */
-    private final ArrayList<Animal> mascotes;
+    private ArrayList<Animal> mascotes;
 
     /**
      * Mètode constructor d'un Propietari
@@ -31,6 +31,13 @@ public class Propietari implements JSONable {
     public Propietari(String nom, String password) {
         this.nom = nom;
         this.password = password;
+        this.mascotes = new ArrayList<>();
+    }
+
+    public Propietari(String nom, String password, int diners) {
+        this.nom = nom;
+        this.password = password;
+        this.diners = diners;
         this.mascotes = new ArrayList<>();
     }
 
@@ -62,16 +69,17 @@ public class Propietari implements JSONable {
      *
      * @return Diners del propietari
      */
-    public float getDiners() {
+    public int getDiners() {
         return diners;
     }
+
 
     /**
      * Mètode setter de l'atribut diners
      *
      * @param diners Nous diners
      */
-    public void setDiners(float diners) {
+    public void setDiners(int diners) {
         this.diners = diners;
     }
 
@@ -82,6 +90,10 @@ public class Propietari implements JSONable {
      */
     public ArrayList<Animal> getMascotes() {
         return mascotes;
+    }
+
+    public void setMascotes(ArrayList<Animal> mascotes) {
+        this.mascotes = mascotes;
     }
 
     @Override

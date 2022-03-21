@@ -12,11 +12,6 @@ public class LoginOrRegisterController {
     private Button login_btn;
 
     @FXML
-    protected void initialize() {
-        Globals.propietaris = JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/usuaris.json"), "Propietari");
-    }
-
-    @FXML
     protected void redirToLogin() {
         FXutils.cambiarEscena("Login", login_btn);
     }

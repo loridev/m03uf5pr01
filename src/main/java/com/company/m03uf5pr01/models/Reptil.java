@@ -24,6 +24,11 @@ public class Reptil extends Animal implements Verinos {
         this.precissioVeri = precissioVeri;
     }
 
+    public Reptil(String nom, int nivell, float atac, float defensa, float precisio, int vida, boolean enverinat, Propietari propietari, TipusAnimal tipus, float precissioVeri) {
+        super(nom, nivell, atac, defensa, precisio, vida, enverinat, propietari, tipus);
+        this.precissioVeri = precissioVeri;
+    }
+
     public void rugir(Animal objectiu) {
         objectiu.defensa -= this.atac / 10;
     }

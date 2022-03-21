@@ -8,17 +8,15 @@ import com.company.m03uf5pr01.utils.Globals;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.util.ArrayList;
-
 public class RegisterController {
     @FXML
     private Button register_btn;
-
     @FXML
     private TextField usr;
-
     @FXML
     private PasswordField pwd;
+    @FXML
+    private Button tornar_btn;
 
     @FXML
     protected void register() {
@@ -33,6 +31,10 @@ public class RegisterController {
             }
 
             Globals.propietaris.add(propietariPerCrear);
+
+            Globals.propietariActual = propietariPerCrear;
+
+            FXutils.cambiarEscena("PantallaInicial", register_btn);
         } catch (InvalidUsernameException iue) {
             FXutils.crearAlerta(Alert.AlertType.ERROR, usr.getScene().getWindow(), "Usuari invàlid",
                     iue.getMessage());
@@ -40,5 +42,10 @@ public class RegisterController {
             FXutils.crearAlerta(Alert.AlertType.ERROR, usr.getScene().getWindow(), "Usuari ja existent",
                     eue.getMessage());
         }
+    }
+
+    @FXML
+    protected void tornar() {
+        FXutils.cambiarEscena("LoginOrRegister", tornar_btn);
     }
 }

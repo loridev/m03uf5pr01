@@ -24,14 +24,67 @@ public final class JSONutils {
                 if (jsonArray.size() == 0) return propietaris;
                 for (JsonValue row : jsonArray) {
                     JsonObject jsonObject = row.asJsonObject();
+                    ArrayList<Animal> mascotes = new ArrayList<>();
 
-                    propietaris.add(new Propietari(jsonObject.getString("nom"), jsonObject.getString("password")));
+                    Propietari propietari = new Propietari(jsonObject.getString("nom"), jsonObject.getString("password"),
+                            jsonObject.getInt("diners"));
+
+                    for (JsonValue row2: jsonObject.getJsonArray("mascotes")) {
+                        JsonObject jsonObject2 = row2.asJsonObject();
+
+                        if (jsonObject2.getJsonNumber("ratioRepeticioAtac") != null) {
+                            mascotes.add(new Au(
+                                    jsonObject2.getString("nom"),
+                                    jsonObject2.getInt("nivell"),
+                                    ((Double) jsonObject2.getJsonNumber("atac").doubleValue()).floatValue(),
+                                    ((Double) jsonObject2.getJsonNumber("defensa").doubleValue()).floatValue(),
+                                    ((Double) jsonObject2.getJsonNumber("precisio").doubleValue()).floatValue(),
+                                    jsonObject2.getInt("vida"),
+                                    jsonObject2.getBoolean("enverinat"),
+                                    propietari,
+                                    TipusAnimal.valueOf(jsonObject2.getString("tipus")),
+                                    jsonObject2.getBoolean("urpesTrencades"),
+                                    ((Double) jsonObject2.getJsonNumber("ratioRepeticioAtac").doubleValue()).floatValue()
+                            ));
+                        }
+                        if (jsonObject2.getJsonNumber("multiplicadorPuny") != null) {
+                            new Mamifer(
+                                    jsonObject2.getString("nom"),
+                                    jsonObject2.getInt("nivell"),
+                                    ((Double) jsonObject2.getJsonNumber("atac").doubleValue()).floatValue(),
+                                    ((Double) jsonObject2.getJsonNumber("defensa").doubleValue()).floatValue(),
+                                    ((Double) jsonObject2.getJsonNumber("precisio").doubleValue()).floatValue(),
+                                    jsonObject2.getInt("vida"),
+                                    jsonObject2.getBoolean("enverinat"),
+                                    propietari,
+                                    TipusAnimal.valueOf(jsonObject2.getString("tipus")),
+                                    ((Double) jsonObject2.getJsonNumber("multiplicadorPuny").doubleValue()).floatValue()
+                            );
+                        }
+                        if (jsonObject2.getJsonNumber("precissioVeri") != null) {
+                            mascotes.add(new Reptil(
+                                    jsonObject2.getString("nom"),
+                                    jsonObject2.getInt("nivell"),
+                                    ((Double) jsonObject2.getJsonNumber("atac").doubleValue()).floatValue(),
+                                    ((Double) jsonObject2.getJsonNumber("defensa").doubleValue()).floatValue(),
+                                    ((Double) jsonObject2.getJsonNumber("precisio").doubleValue()).floatValue(),
+                                    jsonObject2.getInt("vida"),
+                                    jsonObject2.getBoolean("enverinat"),
+                                    propietari,
+                                    TipusAnimal.valueOf(jsonObject2.getString("tipus")),
+                                    ((Double) jsonObject2.getJsonNumber("precissioVeri").doubleValue()).floatValue()
+                                    ));
+                        }
+
+                        propietari.setMascotes(mascotes);
+                    }
+                    propietaris.add(propietari);
                 }
                 return propietaris;
             }
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            System.out.println("IO EXCEPTION: " + ioe.getMessage());
             return null;
         } finally {
             if(jsonReader != null) {
@@ -68,7 +121,9 @@ public final class JSONutils {
                 jsonWriter.close();
             }
             try {
-                os.close();
+                if (os != null) {
+                    os.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -87,6 +142,7 @@ public final class JSONutils {
             jsonObjectBuilder.add("nom", propietari.getNom());
             jsonObjectBuilder.add("password", propietari.getPassword());
             jsonObjectBuilder.add("mascotes", mascotesJson);
+            jsonObjectBuilder.add("diners", propietari.getDiners());
         } else if (obj instanceof Animal) {
             if (obj instanceof Au) {
                 Au au = (Au) obj;

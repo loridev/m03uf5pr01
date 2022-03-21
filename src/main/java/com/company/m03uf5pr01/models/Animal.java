@@ -44,6 +44,18 @@ public abstract class Animal implements JSONable {
         this.tipus = tipus;
     }
 
+    public Animal(String nom, int nivell, float atac, float defensa, float precisio, int vida, boolean enverinat, Propietari propietari, TipusAnimal tipus) {
+        this.nom = nom;
+        this.nivell = nivell;
+        this.atac = atac;
+        this.defensa = defensa;
+        this.precisio = precisio;
+        this.vida = vida;
+        this.enverinat = enverinat;
+        this.propietari = propietari;
+        this.tipus = tipus;
+    }
+
     /**
      * Funció genèrica per atacar un Animal a un altre
      *

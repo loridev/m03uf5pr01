@@ -24,6 +24,11 @@ public class Mamifer extends Animal implements Terrestre {
         this.multiplicadorPuny = multiplicadorPuny;
     }
 
+    public Mamifer(String nom, int nivell, float atac, float defensa, float precisio, int vida, boolean enverinat, Propietari propietari, TipusAnimal tipus, float multiplicadorPuny) {
+        super(nom, nivell, atac, defensa, precisio, vida, enverinat, propietari, tipus);
+        this.multiplicadorPuny = multiplicadorPuny;
+    }
+
     public void rugir(Animal objectiu) {
         int divisor = 8;
 

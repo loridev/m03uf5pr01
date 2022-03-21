@@ -18,8 +18,11 @@ public class App extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.setOnHiding(event -> {
-            JSONutils.writeOnJSON(Globals.propietaris, Paths.get("src/main/resources/com/company/m03uf5pr01/data/usuaris.json"));
+            JSONutils.writeOnJSON(Globals.propietaris, Paths.get("src/main/resources/com/company/m03uf5pr01/data/propietaris.json"));
+            JSONutils.writeOnJSON(Globals.protectora, Paths.get("src/main/resources/com/company/m03uf5pr01/data/protectora.json"));
         });
+        Globals.propietaris = JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/propietaris.json"), "Propietari");
+        Globals.protectora = JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/protectora.json"), "Animal");
         stage.show();
     }
 

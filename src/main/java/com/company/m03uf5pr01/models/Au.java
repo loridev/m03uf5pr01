@@ -26,6 +26,12 @@ public class Au extends Animal implements Aeri {
         this.ratioRepeticioAtac = ratioRepeticioAtac;
     }
 
+    public Au(String nom, int nivell, float atac, float defensa, float precisio, int vida, boolean enverinat, Propietari propietari, TipusAnimal tipus, boolean urpesTrencades, float ratioRepeticioAtac) {
+        super(nom, nivell, atac, defensa, precisio, vida, enverinat, propietari, tipus);
+        this.urpesTrencades = urpesTrencades;
+        this.ratioRepeticioAtac = ratioRepeticioAtac;
+    }
+
     public void rugir(Animal objectiu) {
         objectiu.defensa -= this.atac / 6;
     }

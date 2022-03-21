@@ -11,5 +11,6 @@
       <TextField fx:id="usr" layoutX="127.0" layoutY="36.0" />
       <PasswordField fx:id="pwd" layoutX="127.0" layoutY="87.0" />
       <Button fx:id="register_btn" layoutX="128.0" layoutY="139.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="149.0" text="Registrarse" />
+      <Button fx:id="tornar_btn" mnemonicParsing="false" onAction="#tornar" text="VOLVER" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
    </children>
 </AnchorPane>
