@@ -9,5 +9,5 @@ public final class Globals {
     public static ArrayList<Propietari> propietaris;
     public static Propietari propietariActual;
     public static ArrayList<Animal> protectora;
-    public static int dia = 1;
+    public static int dia = 0;
 }

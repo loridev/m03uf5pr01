@@ -13,8 +13,6 @@ public class AfegirDinersController {
     @FXML
     private Button tornar_btn;
     @FXML
-    private Button afegir_btn;
-    @FXML
     private TextField diners_input;
 
     @FXML

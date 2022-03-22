@@ -32,6 +32,10 @@ public class Au extends Animal implements Aeri {
         this.ratioRepeticioAtac = ratioRepeticioAtac;
     }
 
+    public Au(int id) {
+        super(id);
+    }
+
     public void rugir(Animal objectiu) {
         objectiu.defensa -= this.atac / 6;
     }
@@ -85,5 +89,10 @@ public class Au extends Animal implements Aeri {
 
     public float getRatioRepeticioAtac() {
         return ratioRepeticioAtac;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Ratio repetició atac: " + String.format("%.02f", this.ratioRepeticioAtac);
     }
 }

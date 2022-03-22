@@ -1,6 +1,7 @@
 package com.company.m03uf5pr01.controllers;
 
 import com.company.m03uf5pr01.exceptions.NoAnimalsException;
+import com.company.m03uf5pr01.models.*;
 import com.company.m03uf5pr01.utils.FXutils;
 import com.company.m03uf5pr01.utils.Globals;
 import javafx.fxml.FXML;
@@ -9,6 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class PantallaInicialController {
+    /** Pool de noms */
+    private static final String[] POOL_NOMS = {"Drako", "Lucy", "Lua", "Firulais", "Calcetines", "Zarpas", "Rocky",
+            "Bruc", "Milhouse", "Espetec", "Fuet", "Macarrones", "Llonganissa", "Elisa", "Sara", "Raimon", "Piruleta",
+            "Gala", "Lennon", "Kinder", "Odin", "Israel", "Luke", "Leia", "Dali", "Niebla", "Casper", "Jagger",
+            "Maya", "Tequila", "Joy", "Tor", "Tanka", "Rex", "Timon", "Pumba", "Potaje", "Cocido", "Croquetas",
+            "Bimbo", "Colacao", "Nesquik", "Margarida", "Petúnia", "Coral", "Camila", "Eustàquia", "Coixí"};
     @FXML
     private Button sortir_btn;
     @FXML
@@ -21,9 +28,14 @@ public class PantallaInicialController {
     private Button afegir_btn;
     @FXML
     private Label dia;
+    @FXML
+    private Button dia_seguent_btn;
 
     @FXML
     protected void initialize() {
+        /*if (Globals.dia == 0) {
+            afegirAnimals();
+        }*/
         usuari.setText(Globals.propietariActual.getNom());
         diners.setText(Globals.propietariActual.getDiners() + "€");
         dia.setText("DIA " + Globals.dia);
@@ -53,5 +65,40 @@ public class PantallaInicialController {
     @FXML
     protected void redirToAfegirDiners() {
         FXutils.cambiarEscena("AfegirDiners", afegir_btn);
+    }
+
+    @FXML
+    protected void afegirAnimals() {
+        Globals.dia++;
+        int numAnimalsAfegits = (int) ((Math.random() * 5) + 1);
+
+        for (int i = 0; i < numAnimalsAfegits; i++) {
+            Animal animalAfegir;
+            int tipusAnimalRandom = (int) (Math.random() * TipusAnimal.values().length);
+            int nomRandom = (int) (Math.random() * POOL_NOMS.length);
+            float atac = (float) (Math.random() * 60 + 1);
+            float defensa = (float) (Math.random() * 25 + 1);
+            float precissio = (float) (Math.random() * 75 + 1);
+
+            if (tipusAnimalRandom < 4) {
+                float multiplicadorPuny = (float) (Math.random() * 2 + 1);
+                animalAfegir = new Mamifer(POOL_NOMS[nomRandom], atac, defensa, precissio,
+                        TipusAnimal.values()[tipusAnimalRandom], multiplicadorPuny);
+            } else if (tipusAnimalRandom > 7) {
+                float precissioVeri = (float) (Math.random() * 60 + 1);
+                animalAfegir = new Reptil(POOL_NOMS[nomRandom], atac, defensa, precissio,
+                        TipusAnimal.values()[tipusAnimalRandom], precissioVeri);
+            } else {
+                float ratioRepeticioAtac = (float) (Math.random() * 35 + 1);
+                animalAfegir = new Au(POOL_NOMS[nomRandom], atac, defensa, precissio,
+                        TipusAnimal.values()[tipusAnimalRandom], ratioRepeticioAtac);
+            }
+            Globals.protectora.add(animalAfegir);
+        }
+
+        FXutils.crearAlerta(Alert.AlertType.INFORMATION, dia_seguent_btn.getScene().getWindow(),
+                "DIA " + Globals.dia, "S'ha(n) afegit " + numAnimalsAfegits + " animal(s) més per adoptar," +
+                        " hi ha un total de " + (Globals.protectora.size()) + " a la protectora!");
+        FXutils.cambiarEscena("PantallaInicial", dia_seguent_btn);
     }
 }

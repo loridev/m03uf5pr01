@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class Propietari implements JSONable {
     /** Nom d'un Propietari */
-    private String nom;
+    private final String nom;
     /** Contrasenya d'un propietari */
-    private final String password;
+    private String password;
     /** Diners d'un Propietari */
     private int diners = 50;
     /** Mascotes d'un Propietari */
@@ -39,6 +39,10 @@ public class Propietari implements JSONable {
         this.password = password;
         this.diners = diners;
         this.mascotes = new ArrayList<>();
+    }
+
+    public Propietari(String nom) {
+        this.nom = nom;
     }
 
     /**

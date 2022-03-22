@@ -29,6 +29,10 @@ public class Reptil extends Animal implements Verinos {
         this.precissioVeri = precissioVeri;
     }
 
+    public Reptil(int id) {
+        super(id);
+    }
+
     public void rugir(Animal objectiu) {
         objectiu.defensa -= this.atac / 10;
     }
@@ -61,5 +65,10 @@ public class Reptil extends Animal implements Verinos {
 
     public float getPrecissioVeri() {
         return precissioVeri;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Precissió verí: " + String.format("%.02f", this.precissioVeri);
     }
 }

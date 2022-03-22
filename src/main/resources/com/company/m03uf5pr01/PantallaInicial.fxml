@@ -42,7 +42,8 @@
             <Insets left="40.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="-&gt;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="dia_seguent_btn" mnemonicParsing="false" text="-&gt;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+      onAction="#afegirAnimals"/>
       <Label text="Dia siguiente" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets right="10.0" />

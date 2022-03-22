@@ -4,6 +4,7 @@ import com.company.m03uf5pr01.models.*;
 
 import java.io.*;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import javax.json.*;
@@ -81,11 +82,70 @@ public final class JSONutils {
                     propietaris.add(propietari);
                 }
                 return propietaris;
+            } else if (className.equals("Animal")) {
+                ArrayList<Animal> animals = new ArrayList<>();
+                if (jsonArray.size() == 0) return animals;
+                for (JsonValue row : jsonArray) {
+                    JsonObject jsonObject = row.asJsonObject();
+                    if (jsonObject.getJsonNumber("ratioRepeticioAtac") != null) {
+                        animals.add(new Au(
+                                jsonObject.getString("nom"),
+                                jsonObject.getInt("nivell"),
+                                ((Double) jsonObject.getJsonNumber("atac").doubleValue()).floatValue(),
+                                ((Double) jsonObject.getJsonNumber("defensa").doubleValue()).floatValue(),
+                                ((Double) jsonObject.getJsonNumber("precisio").doubleValue()).floatValue(),
+                                jsonObject.getInt("vida"),
+                                jsonObject.getBoolean("enverinat"),
+                                Globals.propietaris.get(
+                                        Globals.propietaris.indexOf(new Propietari(jsonObject.getString("propietari")))
+                                ),
+                                TipusAnimal.valueOf(jsonObject.getString("tipus")),
+                                jsonObject.getBoolean("urpesTrencades"),
+                                ((Double) jsonObject.getJsonNumber("ratioRepeticioAtac").doubleValue()).floatValue()
+                        ));
+                    }
+                    if (jsonObject.getJsonNumber("multiplicadorPuny") != null) {
+                        animals.add(new Mamifer(
+                                jsonObject.getString("nom"),
+                                jsonObject.getInt("nivell"),
+                                ((Double) jsonObject.getJsonNumber("atac").doubleValue()).floatValue(),
+                                ((Double) jsonObject.getJsonNumber("defensa").doubleValue()).floatValue(),
+                                ((Double) jsonObject.getJsonNumber("precisio").doubleValue()).floatValue(),
+                                jsonObject.getInt("vida"),
+                                jsonObject.getBoolean("enverinat"),
+                                Globals.propietaris.get(
+                                        Globals.propietaris.indexOf(new Propietari(jsonObject.getString("propietari")))
+                                ),
+                                TipusAnimal.valueOf(jsonObject.getString("tipus")),
+                                ((Double) jsonObject.getJsonNumber("multiplicadorPuny").doubleValue()).floatValue()
+                        ));
+                    }
+                    if (jsonObject.getJsonNumber("precissioVeri") != null) {
+                        animals.add(new Reptil(
+                                jsonObject.getString("nom"),
+                                jsonObject.getInt("nivell"),
+                                ((Double) jsonObject.getJsonNumber("atac").doubleValue()).floatValue(),
+                                ((Double) jsonObject.getJsonNumber("defensa").doubleValue()).floatValue(),
+                                ((Double) jsonObject.getJsonNumber("precisio").doubleValue()).floatValue(),
+                                jsonObject.getInt("vida"),
+                                jsonObject.getBoolean("enverinat"),
+                                Globals.propietaris.get(
+                                        Globals.propietaris.indexOf(new Propietari(jsonObject.getString("propietari")))
+                                ),
+                                TipusAnimal.valueOf(jsonObject.getString("tipus")),
+                                ((Double) jsonObject.getJsonNumber("precissioVeri").doubleValue()).floatValue()
+                        ));
+                    }
+                }
+
+                return animals;
             }
 
         } catch (IOException ioe) {
             System.out.println("IO EXCEPTION: " + ioe.getMessage());
             return null;
+        } catch (Exception e) {
+            System.out.println("EXCEPTION: " + e.getMessage());
         } finally {
             if(jsonReader != null) {
                 jsonReader.close();
@@ -105,7 +165,6 @@ public final class JSONutils {
         OutputStream os = null;
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
         JsonWriter jsonWriter = null;
-
         try {
             for (int i = 0; i < collection.size(); i++) {
                 jsonArrayBuilder.add(convertToJsonObject(collection.toArray()[i]));
@@ -130,6 +189,49 @@ public final class JSONutils {
         }
     }
 
+    public static void loadConf(Path path) {
+        InputStream is = null;
+        JsonReader jsonReader = null;
+
+        try {
+            is = new FileInputStream(path.toFile());
+            jsonReader = Json.createReader(is);
+
+            JsonObject object = jsonReader.readObject();
+
+            Globals.dia = object.getInt("dia");
+        } catch (IOException ioe) {
+            ioe.getMessage();
+        }
+    }
+
+    public static void saveConf(Path path) {
+        OutputStream os = null;
+        JsonObjectBuilder job = Json.createObjectBuilder();
+        JsonWriter jsonWriter = null;
+
+        try {
+            job.add("dia", Globals.dia);
+
+            os = new FileOutputStream(path.toFile());
+            jsonWriter = Json.createWriter(os);
+            jsonWriter.writeObject(job.build());
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            if (jsonWriter != null) {
+                jsonWriter.close();
+            }
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private static JsonObject convertToJsonObject(Object obj) {
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
 
@@ -137,6 +239,7 @@ public final class JSONutils {
             Propietari propietari = (Propietari) obj;
             JsonArrayBuilder mascotesJson = Json.createArrayBuilder();
             for (Animal mascota : propietari.getMascotes()) {
+                mascota.setPropietari(propietari);
                 mascotesJson.add(convertToJsonObject(mascota));
             }
             jsonObjectBuilder.add("nom", propietari.getNom());
@@ -155,7 +258,9 @@ public final class JSONutils {
                 jsonObjectBuilder.add("precisio", au.getPrecisio());
                 jsonObjectBuilder.add("vida", au.getVida());
                 jsonObjectBuilder.add("enverinat", au.isEnverinat());
-                jsonObjectBuilder.add("propietari", convertToJsonObject(au.getPropietari()));
+                if (au.getPropietari() != null) {
+                    jsonObjectBuilder.add("propietari", au.getPropietari().getNom());
+                }
                 jsonObjectBuilder.add("tipus", au.getTipus().toString());
             } else if (obj instanceof Mamifer) {
                 Mamifer mamifer = (Mamifer) obj;
@@ -167,7 +272,9 @@ public final class JSONutils {
                 jsonObjectBuilder.add("precisio", mamifer.getPrecisio());
                 jsonObjectBuilder.add("vida", mamifer.getVida());
                 jsonObjectBuilder.add("enverinat", mamifer.isEnverinat());
-                jsonObjectBuilder.add("propietari", convertToJsonObject(mamifer.getPropietari()));
+                if (mamifer.getPropietari() != null) {
+                    jsonObjectBuilder.add("propietari", mamifer.getPropietari().getNom());
+                }
                 jsonObjectBuilder.add("tipus", mamifer.getTipus().toString());
             } else if (obj instanceof Reptil) {
                 Reptil reptil = (Reptil) obj;
@@ -179,13 +286,14 @@ public final class JSONutils {
                 jsonObjectBuilder.add("precisio", reptil.getPrecisio());
                 jsonObjectBuilder.add("vida", reptil.getVida());
                 jsonObjectBuilder.add("enverinat", reptil.isEnverinat());
-                jsonObjectBuilder.add("propietari", convertToJsonObject(reptil.getPropietari()));
+                if (reptil.getPropietari() != null) {
+                    jsonObjectBuilder.add("propietari", reptil.getPropietari().getNom());
+                }
                 jsonObjectBuilder.add("tipus", reptil.getTipus().toString());
             }
 
         }
 
         return jsonObjectBuilder.build();
-
     }
 }

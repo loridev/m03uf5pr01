@@ -29,6 +29,10 @@ public class Mamifer extends Animal implements Terrestre {
         this.multiplicadorPuny = multiplicadorPuny;
     }
 
+    public Mamifer(int id) {
+        super(id);
+    }
+
     public void rugir(Animal objectiu) {
         int divisor = 8;
 
@@ -71,5 +75,10 @@ public class Mamifer extends Animal implements Terrestre {
 
     public float getMultiplicadorPuny() {
         return multiplicadorPuny;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Multiplicador puny: " + String.format("%.02f", this.multiplicadorPuny);
     }
 }

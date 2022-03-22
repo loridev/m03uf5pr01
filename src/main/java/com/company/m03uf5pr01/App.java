@@ -7,8 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.json.Json;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class App extends Application {
     @Override
@@ -20,9 +22,18 @@ public class App extends Application {
         stage.setOnHiding(event -> {
             JSONutils.writeOnJSON(Globals.propietaris, Paths.get("src/main/resources/com/company/m03uf5pr01/data/propietaris.json"));
             JSONutils.writeOnJSON(Globals.protectora, Paths.get("src/main/resources/com/company/m03uf5pr01/data/protectora.json"));
+            JSONutils.saveConf(Paths.get("src/main/resources/com/company/m03uf5pr01/conf/config.json"));
         });
         Globals.propietaris = JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/propietaris.json"), "Propietari");
         Globals.protectora = JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/protectora.json"), "Animal");
+        JSONutils.loadConf(Paths.get("src/main/resources/com/company/m03uf5pr01/conf/config.json"));
+
+        if (Globals.propietaris == null) {
+            Globals.propietaris = new ArrayList<>();
+        }
+        if (Globals.protectora == null) {
+            Globals.protectora = new ArrayList<>();
+        }
         stage.show();
     }
 

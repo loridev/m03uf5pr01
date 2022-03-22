@@ -7,7 +7,9 @@ import com.google.gson.JsonParser;
 /**
  * Classe que representa un Animal al joc
  */
-public abstract class Animal implements JSONable {
+public abstract class Animal implements JSONable, Comparable {
+    private static int contadorId = 0;
+    protected final int id;
     /** Nom d'un Animal */
     protected String nom;
     /** Nivell d'un Animal */
@@ -37,6 +39,7 @@ public abstract class Animal implements JSONable {
      * @param tipus Tipus d'un Animal
      */
     public Animal(String nom, float atac, float defensa, float precisio, TipusAnimal tipus) {
+        this.id = ++contadorId;
         this.nom = nom;
         this.atac = atac;
         this.defensa = defensa;
@@ -45,6 +48,7 @@ public abstract class Animal implements JSONable {
     }
 
     public Animal(String nom, int nivell, float atac, float defensa, float precisio, int vida, boolean enverinat, Propietari propietari, TipusAnimal tipus) {
+        this.id = ++contadorId;
         this.nom = nom;
         this.nivell = nivell;
         this.atac = atac;
@@ -54,6 +58,10 @@ public abstract class Animal implements JSONable {
         this.enverinat = enverinat;
         this.propietari = propietari;
         this.tipus = tipus;
+    }
+
+    public Animal(int id) {
+        this.id = id;
     }
 
     /**
@@ -155,5 +163,29 @@ public abstract class Animal implements JSONable {
 
     public TipusAnimal getTipus() {
         return tipus;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Animal) {
+            return ((Animal) obj).id == this.id;
+        } return false;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.id - ((Animal) o).id;
+    }
+
+    @Override
+    public String toString() {
+        return this.id + " | " + this.nom + " | " + this.getClass().getSimpleName() + " | " + this.getTipus() +
+                " | Atac: " + String.format("%.02f", this.atac) +
+                " | Defensa: " + String.format("%.02f", this.defensa) +
+                " | Precisió: " + String.format("%.02f", this.precisio);
     }
 }
