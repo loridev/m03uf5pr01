@@ -10,7 +10,7 @@ public final class Globals {
     private static ArrayList<Propietari> propietaris;
     private static Propietari propietariActual;
     private static LinkedList<Animal> protectora;
-    private static int dia = 0;
+    private static int dia = 1;
     private static Animal animalDesafiant;
     private static Animal animalDesafiat;
     private static int dinersApostats;

@@ -108,7 +108,7 @@ public abstract class Animal implements JSONable, Comparable {
     /**
      * Mètode que controla els atributs que pugen quan un Animal guanya un combat
      */
-    protected abstract void pujarNivell();
+    public abstract void pujarNivell();
 
     @Override
     public String toJSON() {
@@ -147,6 +147,10 @@ public abstract class Animal implements JSONable, Comparable {
 
     public float getDefensa() {
         return defensa;
+    }
+
+    public void setDefensa(float defensa) {
+        this.defensa = defensa;
     }
 
     public float getPrecisio() {

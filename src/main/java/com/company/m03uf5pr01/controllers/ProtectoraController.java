@@ -40,6 +40,9 @@ public class ProtectoraController {
             Globals.getPropietariActual().getMascotes().add(Globals.getProtectora()
                     .get(Globals.getProtectora().indexOf(new Au(idAnimal))));
 
+            Globals.getProtectora().get(Globals.getProtectora()
+                    .indexOf(new Au(idAnimal))).setPropietari(Globals.getPropietariActual());
+
             //Globals.protectora.get(Globals.protectora.indexOf(new Au(idAnimal))).setPropietari(Globals.propietariActual);
             Globals.getProtectora().remove(Globals.getProtectora().get(Globals.getProtectora().indexOf(new Au(idAnimal))));
 

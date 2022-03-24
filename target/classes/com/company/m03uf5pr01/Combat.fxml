@@ -38,26 +38,22 @@
             <Insets bottom="25.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="hab12_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM"
-      onAction="#desafiantAtac2">
+      <Button fx:id="hab12_btn" mnemonicParsing="false" onAction="#desafiantAtac2" text="HABILIDAD 2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="hab11_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-      onAction="#desafiantAtac1">
+      <Button fx:id="hab11_btn" mnemonicParsing="false" onAction="#desafiantAtac1" text="HABILIDAD 1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="hab21_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-      onAction="#desafiatAtac1">
+      <Button fx:id="hab21_btn" mnemonicParsing="false" onAction="#desafiatAtac1" text="HABILIDAD 1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="hab22_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM"
-      onAction="#desafiatAtac2">
+      <Button fx:id="hab22_btn" mnemonicParsing="false" onAction="#desafiatAtac2" text="HABILIDAD 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
@@ -79,5 +75,6 @@
             <Font size="42.0" />
          </font>
       </Label>
+      <Label fx:id="torn_lbl" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="120.0" prefWidth="200.0" text="Infopartida" textAlignment="CENTER" GridPane.columnIndex="1" />
    </children>
 </GridPane>
