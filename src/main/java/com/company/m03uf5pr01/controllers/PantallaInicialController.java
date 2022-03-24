@@ -30,28 +30,32 @@ public class PantallaInicialController {
     private Label dia;
     @FXML
     private Button dia_seguent_btn;
+    @FXML
+    private Button mascotes_btn;
+    @FXML
+    private Button batalla_btn;
 
     @FXML
     protected void initialize() {
         /*if (Globals.dia == 0) {
             afegirAnimals();
         }*/
-        usuari.setText(Globals.propietariActual.getNom());
-        diners.setText(Globals.propietariActual.getDiners() + "€");
-        dia.setText("DIA " + Globals.dia);
+        usuari.setText(Globals.getPropietariActual().getNom());
+        diners.setText(Globals.getPropietariActual().getDiners() + "€");
+        dia.setText("DIA " + Globals.getDia());
 
     }
 
     @FXML
     protected void logout() {
-        Globals.propietariActual = null;
+        Globals.setPropietariActual(null);
         FXutils.cambiarEscena("LoginOrRegister", sortir_btn);
     }
 
     @FXML
     protected void redirToProtectora() {
         try {
-            if (Globals.protectora == null || Globals.protectora.size() == 0) {
+            if (Globals.getProtectora() == null || Globals.getProtectora().size() == 0) {
                 throw new NoAnimalsException("No hi ha animals a la protectora, ves al dia següent per carregar" +
                         " més animals!");
             }
@@ -68,8 +72,21 @@ public class PantallaInicialController {
     }
 
     @FXML
+    protected void redirToMenuMascotes() {
+        try {
+            if (Globals.getPropietariActual().getMascotes().size() == 0) {
+                throw new NoAnimalsException("No tens cap mascota!");
+            }
+            FXutils.cambiarEscena("MenuMascotes", mascotes_btn);
+        } catch (NoAnimalsException nae) {
+            FXutils.crearAlerta(Alert.AlertType.WARNING, mascotes_btn.getScene().getWindow(),
+                    "No tens mascotes", nae.getMessage());
+        }
+    }
+
+    @FXML
     protected void afegirAnimals() {
-        Globals.dia++;
+        Globals.setDia(Globals.getDia() + 1);
         int numAnimalsAfegits = (int) ((Math.random() * 5) + 1);
 
         for (int i = 0; i < numAnimalsAfegits; i++) {
@@ -93,12 +110,25 @@ public class PantallaInicialController {
                 animalAfegir = new Au(POOL_NOMS[nomRandom], atac, defensa, precissio,
                         TipusAnimal.values()[tipusAnimalRandom], ratioRepeticioAtac);
             }
-            Globals.protectora.add(animalAfegir);
+            Globals.getProtectora().addLast(animalAfegir);
         }
 
         FXutils.crearAlerta(Alert.AlertType.INFORMATION, dia_seguent_btn.getScene().getWindow(),
-                "DIA " + Globals.dia, "S'ha(n) afegit " + numAnimalsAfegits + " animal(s) més per adoptar," +
-                        " hi ha un total de " + (Globals.protectora.size()) + " a la protectora!");
+                "DIA " + Globals.getDia(), "S'ha(n) afegit " + numAnimalsAfegits + " animal(s) més per adoptar," +
+                        " hi ha un total de " + (Globals.getProtectora().size()) + " a la protectora!");
         FXutils.cambiarEscena("PantallaInicial", dia_seguent_btn);
+    }
+
+    @FXML
+    private void redirToPrepa() {
+        try {
+            if (Globals.getPropietariActual().getMascotes().size() == 0) {
+                throw new NoAnimalsException("No tens cap mascota!");
+            }
+            FXutils.cambiarEscena("PreparacioBatalla", batalla_btn);
+        } catch (NoAnimalsException nae) {
+            FXutils.crearAlerta(Alert.AlertType.WARNING, mascotes_btn.getScene().getWindow(),
+                    "No tens mascotes", nae.getMessage());
+        }
     }
 }

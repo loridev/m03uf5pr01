@@ -23,8 +23,8 @@ public class ProtectoraController {
 
     @FXML
     protected void initialize() {
-        Collections.sort(Globals.protectora);
-        for (Animal animal: Globals.protectora) {
+        Collections.sort(Globals.getProtectora());
+        for (Animal animal: Globals.getProtectora()) {
             animals_cb.getItems().add(animal.toString());
         }
     }
@@ -36,11 +36,12 @@ public class ProtectoraController {
                 throw new NoAnimalsException("Has de seleccionar un animal!");
             }
 
-            int idAnimal = Integer.parseInt(animals_cb.getValue().split("(\\ )(\\|)(\\ )")[0]);
-            Globals.propietariActual.getMascotes().add(Globals.protectora.get(Globals.protectora.indexOf(new Au(idAnimal))));
+            int idAnimal = Animal.toStringToId(animals_cb.getValue());
+            Globals.getPropietariActual().getMascotes().add(Globals.getProtectora()
+                    .get(Globals.getProtectora().indexOf(new Au(idAnimal))));
 
             //Globals.protectora.get(Globals.protectora.indexOf(new Au(idAnimal))).setPropietari(Globals.propietariActual);
-            Globals.protectora.remove(Globals.protectora.get(Globals.protectora.indexOf(new Au(idAnimal))));
+            Globals.getProtectora().remove(Globals.getProtectora().get(Globals.getProtectora().indexOf(new Au(idAnimal))));
 
             FXutils.cambiarEscena("PantallaInicial", adoptar_btn);
         } catch (NoAnimalsException nae) {

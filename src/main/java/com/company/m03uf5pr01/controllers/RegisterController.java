@@ -26,13 +26,13 @@ public class RegisterController {
             }
             Propietari propietariPerCrear = new Propietari(usr.getText(), pwd.getText());
 
-            if (Globals.propietaris.contains(propietariPerCrear)) {
+            if (Globals.getPropietaris().contains(propietariPerCrear)) {
                 throw new ExistingUserException("L'usuari amb el nom " + propietariPerCrear.getNom() + " ja existeix!");
             }
 
-            Globals.propietaris.add(propietariPerCrear);
+            Globals.getPropietaris().add(propietariPerCrear);
 
-            Globals.propietariActual = propietariPerCrear;
+            Globals.setPropietariActual(propietariPerCrear);
 
             FXutils.cambiarEscena("PantallaInicial", register_btn);
         } catch (InvalidUsernameException iue) {

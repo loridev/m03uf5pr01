@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.m03uf5pr01.controllers.CombatController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,51 +18,46 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="NOMBRE DE MASCOTA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label fx:id="nom1_lbl" text="NOMBRE DE MASCOTA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="50.0" />
          </GridPane.margin>
       </Label>
-      <Label text="NOMBRE DE MASCOTA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label fx:id="nom2_lbl" text="NOMBRE DE MASCOTA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="50.0" />
          </GridPane.margin>
       </Label>
-      <Label text="TIPO DE MASCOTA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label fx:id="tipus1_lbl" text="TIPO DE MASCOTA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="25.0" />
          </GridPane.margin>
       </Label>
-      <Label text="TIPO DE MASCOTA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label fx:id="tipus2_lbl" text="TIPO DE MASCOTA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="25.0" />
          </GridPane.margin>
       </Label>
-      <Button mnemonicParsing="false" text="HABILIDAD 2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Button fx:id="hab12_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="HABILIDAD 1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="hab11_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="HABILIDAD 1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="hab21_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="HABILIDAD 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Button fx:id="hab22_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Button>
-      <Label text="MENSAJES DE COMBATE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets top="30.0" />
-         </GridPane.margin>
-      </Label>
       <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="10.0" top="30.0" />
@@ -75,8 +68,8 @@
             <Insets left="10.0" top="30.0" />
          </GridPane.margin>
       </ImageView>
-      <Label text="VIDA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-      <Label text="VIDA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+      <Label fx:id="vida1_lbl" text="VIDA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+      <Label fx:id="vida2_lbl" text="VIDA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
       <Label text="VS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <font>
             <Font size="42.0" />

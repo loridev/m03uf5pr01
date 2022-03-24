@@ -7,10 +7,12 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import javax.json.*;
 
 public final class JSONutils {
-    public static ArrayList readFromJSON(Path path, String className) {
+    public static Collection readFromJSON(Path path, String className) {
         InputStream is = null;
         JsonReader jsonReader = null;
 
@@ -49,7 +51,7 @@ public final class JSONutils {
                             ));
                         }
                         if (jsonObject2.getJsonNumber("multiplicadorPuny") != null) {
-                            new Mamifer(
+                            mascotes.add(new Mamifer(
                                     jsonObject2.getString("nom"),
                                     jsonObject2.getInt("nivell"),
                                     ((Double) jsonObject2.getJsonNumber("atac").doubleValue()).floatValue(),
@@ -60,7 +62,7 @@ public final class JSONutils {
                                     propietari,
                                     TipusAnimal.valueOf(jsonObject2.getString("tipus")),
                                     ((Double) jsonObject2.getJsonNumber("multiplicadorPuny").doubleValue()).floatValue()
-                            );
+                            ));
                         }
                         if (jsonObject2.getJsonNumber("precissioVeri") != null) {
                             mascotes.add(new Reptil(
@@ -83,10 +85,16 @@ public final class JSONutils {
                 }
                 return propietaris;
             } else if (className.equals("Animal")) {
-                ArrayList<Animal> animals = new ArrayList<>();
+                LinkedList<Animal> animals = new LinkedList<>();
                 if (jsonArray.size() == 0) return animals;
                 for (JsonValue row : jsonArray) {
                     JsonObject jsonObject = row.asJsonObject();
+                    Propietari propietariAnimal = null;
+                    try {
+                        propietariAnimal = new Propietari(jsonObject.getString("propietari"));
+                    } catch (Exception e) {
+                        System.out.println("ESCAPE NO PROPIETARI");
+                    }
                     if (jsonObject.getJsonNumber("ratioRepeticioAtac") != null) {
                         animals.add(new Au(
                                 jsonObject.getString("nom"),
@@ -96,9 +104,7 @@ public final class JSONutils {
                                 ((Double) jsonObject.getJsonNumber("precisio").doubleValue()).floatValue(),
                                 jsonObject.getInt("vida"),
                                 jsonObject.getBoolean("enverinat"),
-                                Globals.propietaris.get(
-                                        Globals.propietaris.indexOf(new Propietari(jsonObject.getString("propietari")))
-                                ),
+                                propietariAnimal,
                                 TipusAnimal.valueOf(jsonObject.getString("tipus")),
                                 jsonObject.getBoolean("urpesTrencades"),
                                 ((Double) jsonObject.getJsonNumber("ratioRepeticioAtac").doubleValue()).floatValue()
@@ -113,9 +119,7 @@ public final class JSONutils {
                                 ((Double) jsonObject.getJsonNumber("precisio").doubleValue()).floatValue(),
                                 jsonObject.getInt("vida"),
                                 jsonObject.getBoolean("enverinat"),
-                                Globals.propietaris.get(
-                                        Globals.propietaris.indexOf(new Propietari(jsonObject.getString("propietari")))
-                                ),
+                                propietariAnimal,
                                 TipusAnimal.valueOf(jsonObject.getString("tipus")),
                                 ((Double) jsonObject.getJsonNumber("multiplicadorPuny").doubleValue()).floatValue()
                         ));
@@ -129,9 +133,7 @@ public final class JSONutils {
                                 ((Double) jsonObject.getJsonNumber("precisio").doubleValue()).floatValue(),
                                 jsonObject.getInt("vida"),
                                 jsonObject.getBoolean("enverinat"),
-                                Globals.propietaris.get(
-                                        Globals.propietaris.indexOf(new Propietari(jsonObject.getString("propietari")))
-                                ),
+                                propietariAnimal,
                                 TipusAnimal.valueOf(jsonObject.getString("tipus")),
                                 ((Double) jsonObject.getJsonNumber("precissioVeri").doubleValue()).floatValue()
                         ));
@@ -161,7 +163,7 @@ public final class JSONutils {
         return null;
     }
 
-    public static void writeOnJSON(ArrayList collection, Path path) {
+    public static void writeOnJSON(Collection collection, Path path) {
         OutputStream os = null;
         JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
         JsonWriter jsonWriter = null;
@@ -199,7 +201,7 @@ public final class JSONutils {
 
             JsonObject object = jsonReader.readObject();
 
-            Globals.dia = object.getInt("dia");
+            Globals.setDia(object.getInt("dia"));
         } catch (IOException ioe) {
             ioe.getMessage();
         }
@@ -211,7 +213,7 @@ public final class JSONutils {
         JsonWriter jsonWriter = null;
 
         try {
-            job.add("dia", Globals.dia);
+            job.add("dia", Globals.getDia());
 
             os = new FileOutputStream(path.toFile());
             jsonWriter = Json.createWriter(os);

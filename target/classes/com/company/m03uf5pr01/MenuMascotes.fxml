@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.m03uf5pr01.controllers.MenuMascotesController">
+   <children>
+      <Label layoutX="211.0" layoutY="40.0" text="MIS MASCOTAS">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <ComboBox fx:id="mascotes_cb" layoutX="14.0" layoutY="120.0" prefHeight="26.0" prefWidth="572.0" />
+      <Button fx:id="curar_btn" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" text="CURAR (50€)"
+      onAction="#curar"/>
+      <Button fx:id="sacrificar_btn" layoutX="506.0" layoutY="187.0" mnemonicParsing="false" text="SACRIFICAR"
+      onAction="#sacrificar"/>
+      <Button fx:id="veri_btn" layoutX="231.0" layoutY="187.0" mnemonicParsing="false" text="QUITAR VENENO (25€)"
+      onAction="#treureVeri"/>
+      <Button fx:id="tornar_btn"  layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="VOLVER"
+      onAction="#tornar"/>
+   </children>
+</AnchorPane>

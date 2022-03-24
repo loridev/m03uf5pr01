@@ -23,9 +23,9 @@ public class LoginController {
     @FXML
     protected void login() {
         try {
-            for (Propietari propietari: Globals.propietaris) {
+            for (Propietari propietari: Globals.getPropietaris()) {
                 if (propietari.getNom().equals(usr.getText()) && propietari.getPassword().equals(pwd.getText())) {
-                    Globals.propietariActual = propietari;
+                    Globals.setPropietariActual(propietari);
                     FXutils.cambiarEscena("PantallaInicial", login_btn);
                     return;
                 }

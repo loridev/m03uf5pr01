@@ -169,6 +169,18 @@ public abstract class Animal implements JSONable, Comparable {
         return id;
     }
 
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public void setEnverinat(boolean enverinat) {
+        this.enverinat = enverinat;
+    }
+
+    public static int toStringToId(String tostring) {
+        return Integer.parseInt(tostring.split("(\\ )(\\|)(\\ )")[0]);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Animal) {
@@ -186,6 +198,7 @@ public abstract class Animal implements JSONable, Comparable {
         return this.id + " | " + this.nom + " | " + this.getClass().getSimpleName() + " | " + this.getTipus() +
                 " | Atac: " + String.format("%.02f", this.atac) +
                 " | Defensa: " + String.format("%.02f", this.defensa) +
-                " | Precisió: " + String.format("%.02f", this.precisio);
+                " | Precisió: " + String.format("%.02f", this.precisio) +
+                " | Vida: " + this.vida;
     }
 }

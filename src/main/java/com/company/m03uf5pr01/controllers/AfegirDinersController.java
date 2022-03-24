@@ -28,7 +28,7 @@ public class AfegirDinersController {
             if (dinersAfegir > 5000) {
                 throw new OutOfRangeException("El màxim de diners admitit per afegir és de 5000€");
             }
-            Globals.propietariActual.setDiners(Globals.propietariActual.getDiners() + Integer.parseInt(diners_input.getText()));
+            Globals.getPropietariActual().setDiners(Globals.getPropietariActual().getDiners() + Integer.parseInt(diners_input.getText()));
             tornar();
         } catch (InvalidTypeException ite) {
             FXutils.crearAlerta(Alert.AlertType.ERROR, diners_input.getScene().getWindow(), "Input incorrecte",

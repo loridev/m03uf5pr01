@@ -25,7 +25,8 @@
        </Label>
       <Button fx:id="protectora_btn" mnemonicParsing="false" onAction="#redirToProtectora" text="ADOPTAR ANIMAL" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
       <Button fx:id="afegir_btn" mnemonicParsing="false" onAction="#redirToAfegirDiners" text="AÑADIR DINERO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="MENU MASCOTAS" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Button fx:id="mascotes_btn" mnemonicParsing="false" text="MENU MASCOTAS" GridPane.columnIndex="2" GridPane.rowIndex="1"
+      onAction="#redirToMenuMascotes"/>
       <Label fx:id="usuari" text="Nombre de Usuario" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="10.0" top="15.0" />
@@ -36,7 +37,8 @@
             <Insets right="10.0" />
          </GridPane.margin>
       </Label>
-      <Button mnemonicParsing="false" text="JUGAR BATALLA" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button fx:id="batalla_btn" mnemonicParsing="false" text="JUGAR BATALLA" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+      onAction="#redirToPrepa"/>
       <Button fx:id="sortir_btn" mnemonicParsing="false" onAction="#logout" text="SALIR" GridPane.halignment="LEFT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="40.0" />
