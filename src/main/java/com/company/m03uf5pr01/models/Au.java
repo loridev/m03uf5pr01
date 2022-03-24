@@ -48,18 +48,21 @@ public class Au extends Animal implements Aeri {
         this.ratioRepeticioAtac *= 1.05;
     }
 
-    public void picotada(Animal objectiu) {
-        this.atacar(this.atac, objectiu);
+    public boolean picotada(Animal objectiu) {
+        boolean retorno = this.atacar(this.atac, objectiu);
 
         if (this.repeticio()) {
             this.picotada(objectiu);
         }
 
-    }
+        return retorno;
 
-    public void esgarrapada(Animal objectiu) {
+    }
+//TODO: ATAQUES BOOLEAN
+    public boolean esgarrapada(Animal objectiu) {
+        boolean retorno;
         if (!this.urpesTrencades) {
-            this.atacar(this.atac, objectiu);
+            retorno = this.atacar(this.atac, objectiu);
             if (this.tipus != TipusAnimal.ALIGA) {
                 int random = (int) (Math.random() * 100 + 1);
                 if (random <= 10) {
@@ -69,8 +72,11 @@ public class Au extends Animal implements Aeri {
                 }
             }
         } else {
+            retorno = false;
             System.out.println("Ha intentat fer una esgarrapada però té les ungles trencades!");
         }
+
+        return retorno;
     }
 
     public boolean repeticio() {

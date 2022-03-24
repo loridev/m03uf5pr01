@@ -70,7 +70,7 @@ public abstract class Animal implements JSONable, Comparable {
      * @param danys Valor d'atac total del atacant amb multiplicadors o divisors
      * @param objectiu Animal defensor
      */
-    protected void atacar(float danys, Animal objectiu) {
+    protected boolean atacar(float danys, Animal objectiu) {
         if (this.atacExitos()) {
             if (danys > objectiu.defensa) {
                 System.out.println(this.nom + " ha fet un atac exitòs a " + objectiu.nom);
@@ -79,8 +79,12 @@ public abstract class Animal implements JSONable, Comparable {
                 System.out.println("L'animal " + objectiu.nom + " s'ha pogut defensar de l'atac i ha minimitzat el cop");
                 objectiu.vida -= 1;
             }
+
+            return true;
         } else {
             System.out.println("L'atac ha fallat!");
+
+            return false;
         }
     }
 
@@ -99,7 +103,7 @@ public abstract class Animal implements JSONable, Comparable {
      *
      * @param objectiu Animal defensor
      */
-    protected abstract void rugir(Animal objectiu);
+    public abstract void rugir(Animal objectiu);
 
     /**
      * Mètode que controla els atributs que pugen quan un Animal guanya un combat

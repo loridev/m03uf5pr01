@@ -38,22 +38,26 @@
             <Insets bottom="25.0" />
          </GridPane.margin>
       </Label>
-      <Button fx:id="hab12_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Button fx:id="hab12_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM"
+      onAction="#desafiantAtac2">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="hab11_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="hab11_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+      onAction="#desafiantAtac1">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="hab21_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="hab21_btn" mnemonicParsing="false" text="HABILIDAD 1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+      onAction="#desafiatAtac1">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="hab22_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Button fx:id="hab22_btn" mnemonicParsing="false" text="HABILIDAD 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM"
+      onAction="#desafiatAtac2">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>

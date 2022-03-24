@@ -108,6 +108,8 @@ public class PreparacioBatallaController {
             Globals.getPropietariActual().setDiners(Globals.getPropietariActual().getDiners() - dinersApostats);
             seleccionat.setDiners(seleccionat.getDiners() - dinersApostats);
             Globals.setDinersApostats(dinersApostats * 2);
+            FXutils.crearAlerta(Alert.AlertType.INFORMATION, batalla_btn.getScene().getWindow(),
+                    "RUGIR", "Els animals han rugit, els atacs dels animals han baixat!");
             FXutils.cambiarEscena("Combat", batalla_btn);
         } catch (NoSelectionException nse) {
             FXutils.crearAlerta(Alert.AlertType.ERROR, batalla_btn.getScene().getWindow(),

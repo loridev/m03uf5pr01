@@ -18,5 +18,5 @@ public interface Verinos {
      *
      * @param objectiu Animal al que se li fa la mossegada
      */
-    void mossegar(Animal objectiu);
+    boolean mossegar(Animal objectiu);
 }

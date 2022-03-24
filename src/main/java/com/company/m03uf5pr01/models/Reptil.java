@@ -45,14 +45,16 @@ public class Reptil extends Animal implements Verinos {
         this.precissioVeri *= 1.05;
     }
 
-    public void mossegar(Animal objectiu) {
-        this.atacar(this.atac, objectiu);
+    public boolean mossegar(Animal objectiu) {
+        boolean retorn = this.atacar(this.atac, objectiu);
         if (this.enverinar()) {
             if (!objectiu.enverinat) {
                 System.out.println(objectiu.nom + " ha sigut enverinat!");
                 objectiu.enverinat = true;
             }
         }
+
+        return retorn;
     }
 
     public boolean enverinar() {

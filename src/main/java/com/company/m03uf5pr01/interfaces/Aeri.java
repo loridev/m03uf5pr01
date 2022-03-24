@@ -11,14 +11,14 @@ public interface Aeri {
      *
      * @param objectiu Animal al que se li fa la picotada
      */
-    void picotada(Animal objectiu);
+    boolean picotada(Animal objectiu);
 
     /**
      * Funció que controla quan es fa una esgarrapada
      *
      * @param objectiu Animal al que se li fa la esgarrapada
      */
-    void esgarrapada(Animal objectiu);
+    boolean esgarrapada(Animal objectiu);
 
     /**
      * Funció que controla quan es repeteix un atac d'un Animal volador

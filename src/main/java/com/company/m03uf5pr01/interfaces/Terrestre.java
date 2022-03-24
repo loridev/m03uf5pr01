@@ -11,12 +11,12 @@ public interface Terrestre {
      *
      * @param objectiu Animal al que se li fa el cop de puny
      */
-    void copDePuny(Animal objectiu);
+    boolean copDePuny(Animal objectiu);
 
     /**
      * Funció que controla quan es fa una patada
      *
      * @param objectiu Animal al que se li fa la patada
      */
-    void patada(Animal objectiu);
+    boolean patada(Animal objectiu);
 }
