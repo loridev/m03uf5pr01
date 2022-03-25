@@ -14,6 +14,7 @@ public final class Globals {
     private static Animal animalDesafiant;
     private static Animal animalDesafiat;
     private static int dinersApostats;
+    public final static String RESOURCES_PATH = "src/main/resources/com/company/m03uf5pr01/";
 
     public static ArrayList<Propietari> getPropietaris() {
         return propietaris;

@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 public class CombatController {
     @FXML
@@ -34,6 +35,10 @@ public class CombatController {
     private Button hab22_btn;
     @FXML
     private Label torn_lbl;
+    @FXML
+    private ImageView img1 = new ImageView();
+    @FXML
+    private ImageView img2 = new ImageView();
 
     private String classeDesafiant;
     private String classeDesafiat;
@@ -47,6 +52,11 @@ public class CombatController {
         tipus2_lbl.setText(Globals.getAnimalDesafiat().getTipus().toString());
         vida1_lbl.setText("VIDA: " + Globals.getAnimalDesafiant().getVida());
         vida2_lbl.setText("VIDA: " + Globals.getAnimalDesafiat().getVida());
+
+        img1.setImage(FXutils.getPngImage(Globals.RESOURCES_PATH + "images/" +
+                Globals.getAnimalDesafiant().getTipus().toString().toLowerCase()));
+        img2.setImage(FXutils.getPngImage(Globals.RESOURCES_PATH + "images/" +
+                Globals.getAnimalDesafiat().getTipus().toString().toLowerCase()));
 
         Globals.getAnimalDesafiant().rugir(Globals.getAnimalDesafiat());
         Globals.getAnimalDesafiat().rugir(Globals.getAnimalDesafiant());
@@ -99,33 +109,12 @@ public class CombatController {
             case "Reptil" -> exitos = ((Reptil) Globals.getAnimalDesafiant()).mossegar(Globals.getAnimalDesafiat());
         }
 
-        if (exitos) {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
-                    "Atac exitós", Globals.getAnimalDesafiant().getNom() + " ha atacat " +
-                            "satisfactòriament a " + Globals.getAnimalDesafiat().getNom());
-        } else {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
-                    "Atac fallat", "L'atac ha fallat");
-        }
-
+        checkAtac(exitos, Globals.getAnimalDesafiant(), Globals.getAnimalDesafiat());
         checkVeri();
-
-        vida1_lbl.setText("VIDA: " + Globals.getAnimalDesafiant().getVida());
-        vida2_lbl.setText("VIDA: " + Globals.getAnimalDesafiat().getVida());
+        checkVida();
 
         if (detectarFinal()) {
-            Animal guanyador = guanyador()[0];
-            Animal perdedor = guanyador()[1];
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
-                    "TENIM GUANYADOR", guanyador.getNom() + " ha derrotat a " + perdedor.getNom() +
-                    " i, per tant, pujarà de nivell i el propietari " + guanyador.getPropietari().getNom() + " ha guanyat "
-                            + Globals.getDinersApostats() + "€");
-
-            perdedor.getPropietari().getMascotes().remove(perdedor);
-            guanyador.getPropietari().setDiners(guanyador.getPropietari().getDiners() + Globals.getDinersApostats());
-            guanyador.pujarNivell();
-
-            FXutils.cambiarEscena("PantallaInicial", nom1_lbl);
+            guanyador();
         } else {
             passarTorn();
         }
@@ -140,33 +129,12 @@ public class CombatController {
             exitos = ((Mamifer) Globals.getAnimalDesafiant()).patada(Globals.getAnimalDesafiat());
         }
 
-        if (exitos) {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
-                    "Atac exitós", Globals.getAnimalDesafiant().getNom() + " ha atacat " +
-                            "satisfactòriament a " + Globals.getAnimalDesafiat().getNom());
-        } else {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
-                    "Atac fallat", "L'atac ha fallat");
-        }
-
+        checkAtac(exitos, Globals.getAnimalDesafiant(), Globals.getAnimalDesafiat());
         checkVeri();
-
-        vida1_lbl.setText("VIDA: " + Globals.getAnimalDesafiant().getVida());
-        vida2_lbl.setText("VIDA: " + Globals.getAnimalDesafiat().getVida());
+        checkVida();
 
         if (detectarFinal()) {
-            Animal guanyador = guanyador()[0];
-            Animal perdedor = guanyador()[1];
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
-                    "TENIM GUANYADOR", guanyador.getNom() + " ha derrotat a " + perdedor.getNom() +
-                            " i, per tant, pujarà de nivell i el propietari " + guanyador.getPropietari().getNom() + " ha guanyat "
-                            + Globals.getDinersApostats() + "€");
-
-            perdedor.getPropietari().getMascotes().remove(perdedor);
-            guanyador.getPropietari().setDiners(guanyador.getPropietari().getDiners() + Globals.getDinersApostats());
-            guanyador.pujarNivell();
-
-            FXutils.cambiarEscena("PantallaInicial", nom1_lbl);
+            guanyador();
         } else {
             passarTorn();
         }
@@ -188,33 +156,12 @@ public class CombatController {
             case "Reptil" -> exitos = ((Reptil) Globals.getAnimalDesafiat()).mossegar(Globals.getAnimalDesafiant());
         }
 
-        if (exitos) {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
-                    "Atac exitós", Globals.getAnimalDesafiat().getNom() + " ha atacat " +
-                            "satisfactòriament a " + Globals.getAnimalDesafiant().getNom());
-        } else {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
-                    "Atac fallat", "L'atac ha fallat");
-        }
-
+        checkAtac(exitos, Globals.getAnimalDesafiat(), Globals.getAnimalDesafiant());
         checkVeri();
-
-        vida1_lbl.setText("VIDA: " + Globals.getAnimalDesafiant().getVida());
-        vida2_lbl.setText("VIDA: " + Globals.getAnimalDesafiat().getVida());
+        checkVida();
 
         if (detectarFinal()) {
-            Animal guanyador = guanyador()[0];
-            Animal perdedor = guanyador()[1];
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
-                    "TENIM GUANYADOR", guanyador.getNom() + " ha derrotat a " + perdedor.getNom() +
-                            " i, per tant, pujarà de nivell i el propietari " + guanyador.getPropietari().getNom() + " ha guanyat "
-                            + Globals.getDinersApostats() + "€");
-
-            perdedor.getPropietari().getMascotes().remove(perdedor);
-            guanyador.getPropietari().setDiners(guanyador.getPropietari().getDiners() + Globals.getDinersApostats());
-            guanyador.pujarNivell();
-
-            FXutils.cambiarEscena("PantallaInicial", nom1_lbl);
+            guanyador();
         } else {
             passarTorn();
         }
@@ -229,45 +176,12 @@ public class CombatController {
             exitos = ((Mamifer) Globals.getAnimalDesafiat()).patada(Globals.getAnimalDesafiant());
         }
 
-        if (exitos) {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
-                    "Atac exitós", Globals.getAnimalDesafiat().getNom() + " ha atacat " +
-                            "satisfactòriament a " + Globals.getAnimalDesafiant().getNom());
-        } else {
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
-                    "Atac fallat", "L'atac ha fallat");
-        }
-
+        checkAtac(exitos, Globals.getAnimalDesafiat(), Globals.getAnimalDesafiant());
         checkVeri();
-
-        vida1_lbl.setText("VIDA: " + Globals.getAnimalDesafiant().getVida());
-        vida2_lbl.setText("VIDA: " + Globals.getAnimalDesafiat().getVida());
+        checkVida();
 
         if (detectarFinal()) {
-            Animal guanyador = guanyador()[0];
-            Animal perdedor = guanyador()[1];
-            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
-                    "TENIM GUANYADOR", guanyador.getNom() + " ha derrotat a " + perdedor.getNom() +
-                            " i, per tant, pujarà de nivell i el propietari " + guanyador.getPropietari().getNom() + " ha guanyat "
-                            + Globals.getDinersApostats() + "€");
-
-            perdedor.getPropietari().getMascotes().remove(perdedor);
-            guanyador.getPropietari().setDiners(guanyador.getPropietari().getDiners() + Globals.getDinersApostats());
-            guanyador.pujarNivell();
-
-            if (perdedor instanceof Au) {
-                guanyador.setDefensa(guanyador.getDefensa() + perdedor.getAtac() / 6);
-            } else if (perdedor instanceof Mamifer) {
-                if (perdedor.getTipus().toString().equals("PORC")) {
-                    guanyador.setDefensa(guanyador.getDefensa() + perdedor.getAtac() / 4);
-                } else {
-                    guanyador.setDefensa(guanyador.getDefensa() + perdedor.getAtac() / 8);
-                }
-            } else if (perdedor instanceof Reptil) {
-                guanyador.setDefensa(guanyador.getDefensa() + perdedor.getAtac() / 10);
-            }
-
-            FXutils.cambiarEscena("PantallaInicial", nom1_lbl);
+            guanyador();
         } else {
             passarTorn();
         }
@@ -277,11 +191,29 @@ public class CombatController {
         return Globals.getAnimalDesafiant().getVida() <= 0 || Globals.getAnimalDesafiat().getVida() <= 0;
     }
 
-    private Animal[] guanyador() {
+    private void guanyador() {
+        Animal guanyador;
+        Animal perdedor;
         if (Globals.getAnimalDesafiant().getVida() <= 0) {
-            return new Animal[]{Globals.getAnimalDesafiat(), Globals.getAnimalDesafiant()};
+            guanyador = Globals.getAnimalDesafiat();
+            perdedor = Globals.getAnimalDesafiant();
+        } else {
+            guanyador = Globals.getAnimalDesafiant();
+            perdedor = Globals.getAnimalDesafiat();
         }
-        return new Animal[]{Globals.getAnimalDesafiant(), Globals.getAnimalDesafiat()};
+
+        FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
+                "TENIM GUANYADOR", guanyador.getNom() + " ha derrotat a " + perdedor.getNom() +
+                        " i, per tant, pujarà de nivell i el propietari " + guanyador.getPropietari().getNom() + " ha guanyat "
+                        + Globals.getDinersApostats() + "€");
+
+        perdedor.getPropietari().getMascotes().remove(perdedor);
+        guanyador.getPropietari().setDiners(guanyador.getPropietari().getDiners() + Globals.getDinersApostats());
+        guanyador.pujarNivell();
+
+        guanyador.retornarDefensa(perdedor);
+
+        FXutils.cambiarEscena("PantallaInicial", nom1_lbl);
     }
 
     private void passarTorn() {
@@ -313,6 +245,22 @@ public class CombatController {
                     "ENVERINAT", Globals.getAnimalDesafiant().getNom() + " ha sigut enverinat, per tant " +
                             "perdrà 5 de vida");
             Globals.getAnimalDesafiant().setVida(Globals.getAnimalDesafiant().getVida() - 5);
+        }
+    }
+
+    private void checkVida() {
+        vida1_lbl.setText("VIDA: " + Globals.getAnimalDesafiant().getVida());
+        vida2_lbl.setText("VIDA: " + Globals.getAnimalDesafiat().getVida());
+    }
+
+    private void checkAtac(boolean exitos, Animal atacant, Animal defensor) {
+        if (exitos) {
+            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom1_lbl.getScene().getWindow(),
+                    "Atac exitós", atacant.getNom() + " ha atacat " +
+                            "satisfactòriament a " + defensor.getNom());
+        } else {
+            FXutils.crearAlerta(Alert.AlertType.INFORMATION, nom2_lbl.getScene().getWindow(),
+                    "Atac fallat", "L'atac ha fallat");
         }
     }
 

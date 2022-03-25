@@ -91,7 +91,7 @@ public class MenuMascotesController {
                 throw new NoAnimalsException("Has de seleccionar un animal!");
             }
             if (Globals.getPropietariActual().getDiners() < 25) {
-                throw new NotEnoughMoneyException("No tens suficients diners per curar l'animal!");
+                throw new NotEnoughMoneyException("No tens suficients diners per treure el verí a l'animal!");
             }
             Globals.getPropietariActual().setDiners(Globals.getPropietariActual().getDiners() - 25);
             int idAnimal = Integer.parseInt(mascotes_cb.getValue().split("(\\ )(\\|)(\\ )")[0]);

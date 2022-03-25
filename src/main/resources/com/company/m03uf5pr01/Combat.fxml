@@ -58,16 +58,6 @@
             <Insets bottom="10.0" />
          </GridPane.margin>
       </Button>
-      <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="10.0" top="30.0" />
-         </GridPane.margin>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="10.0" top="30.0" />
-         </GridPane.margin>
-      </ImageView>
       <Label fx:id="vida1_lbl" text="VIDA" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
       <Label fx:id="vida2_lbl" text="VIDA" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
       <Label text="VS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -76,5 +66,15 @@
          </font>
       </Label>
       <Label fx:id="torn_lbl" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="120.0" prefWidth="200.0" text="Infopartida" textAlignment="CENTER" GridPane.columnIndex="1" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="img1" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="img2" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
    </children>
 </GridPane>

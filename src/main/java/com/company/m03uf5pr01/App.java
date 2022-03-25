@@ -23,13 +23,13 @@ public class App extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.setOnHiding(event -> {
-            JSONutils.writeOnJSON(Globals.getPropietaris(), Paths.get("src/main/resources/com/company/m03uf5pr01/data/propietaris.json"));
-            JSONutils.writeOnJSON(Globals.getProtectora(), Paths.get("src/main/resources/com/company/m03uf5pr01/data/protectora.json"));
-            JSONutils.saveConf(Paths.get("src/main/resources/com/company/m03uf5pr01/conf/config.json"));
+            JSONutils.writeOnJSON(Globals.getPropietaris(), Paths.get(Globals.RESOURCES_PATH + "data/propietaris.json"));
+            JSONutils.writeOnJSON(Globals.getProtectora(), Paths.get(Globals.RESOURCES_PATH + "data/protectora.json"));
+            JSONutils.saveConf(Paths.get(Globals.RESOURCES_PATH + "conf/config.json"));
         });
-        Globals.setPropietaris((ArrayList<Propietari>) JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/propietaris.json"), "Propietari"));
-        Globals.setProtectora((LinkedList<Animal>) JSONutils.readFromJSON(Paths.get("src/main/resources/com/company/m03uf5pr01/data/protectora.json"), "Animal"));
-        JSONutils.loadConf(Paths.get("src/main/resources/com/company/m03uf5pr01/conf/config.json"));
+        Globals.setPropietaris((ArrayList<Propietari>) JSONutils.readFromJSON(Paths.get(Globals.RESOURCES_PATH + "data/propietaris.json"), "Propietari"));
+        Globals.setProtectora((LinkedList<Animal>) JSONutils.readFromJSON(Paths.get(Globals.RESOURCES_PATH + "data/protectora.json"), "Animal"));
+        JSONutils.loadConf(Paths.get(Globals.RESOURCES_PATH + "conf/config.json"));
 
         if (Globals.getPropietaris() == null) {
             Globals.setPropietaris(new ArrayList<>());

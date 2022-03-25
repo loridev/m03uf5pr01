@@ -110,6 +110,20 @@ public abstract class Animal implements JSONable, Comparable {
      */
     public abstract void pujarNivell();
 
+    public void retornarDefensa(Animal contrincant) {
+        if (contrincant instanceof Au) {
+            this.setDefensa(this.getDefensa() + contrincant.getAtac() / 6);
+        } else if (contrincant instanceof Mamifer) {
+            if (contrincant.getTipus().toString().equals("PORC")) {
+                this.setDefensa(this.getDefensa() + contrincant.getAtac() / 4);
+            } else {
+                this.setDefensa(this.getDefensa() + contrincant.getAtac() / 8);
+            }
+        } else if (contrincant instanceof Reptil) {
+            this.setDefensa(this.getDefensa() + contrincant.getAtac() / 10);
+        }
+    }
+
     @Override
     public String toJSON() {
         return new Gson().toJson(this);
@@ -207,6 +221,7 @@ public abstract class Animal implements JSONable, Comparable {
                 " | Atac: " + String.format("%.02f", this.atac) +
                 " | Defensa: " + String.format("%.02f", this.defensa) +
                 " | Precisió: " + String.format("%.02f", this.precisio) +
-                " | Vida: " + this.vida;
+                " | Vida: " + this.vida +
+                " | Nivell: " + this.nivell;
     }
 }

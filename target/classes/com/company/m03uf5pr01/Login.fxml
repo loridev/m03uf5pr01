@@ -11,7 +11,6 @@
       <TextField fx:id="usr" layoutX="127.0" layoutY="36.0" />
       <PasswordField fx:id="pwd" layoutX="127.0" layoutY="87.0" />
       <Button fx:id="login_btn" layoutX="128.0" layoutY="139.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="149.0" text="LOGIN" />
-      <Label layoutX="158.0" layoutY="174.0" prefHeight="17.0" prefWidth="98.0" text="Datos incorrectos" />
       <Button fx:id="tornar_btn" mnemonicParsing="false" onAction="#tornar" text="VOLVER" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
    </children>
 </AnchorPane>
