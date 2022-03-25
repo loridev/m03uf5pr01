@@ -94,7 +94,7 @@ public class MenuMascotesController {
                 throw new NotEnoughMoneyException("No tens suficients diners per treure el verí a l'animal!");
             }
             Globals.getPropietariActual().setDiners(Globals.getPropietariActual().getDiners() - 25);
-            int idAnimal = Integer.parseInt(mascotes_cb.getValue().split("(\\ )(\\|)(\\ )")[0]);
+            int idAnimal = Animal.toStringToId(mascotes_cb.getValue());
             Animal animalSeleccionat = Globals.getPropietariActual().getMascotes().get(Globals.getPropietariActual().getMascotes()
                     .indexOf(new Au(idAnimal)));
             if (!animalSeleccionat.isEnverinat()) {
