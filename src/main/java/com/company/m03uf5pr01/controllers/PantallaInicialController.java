@@ -1,5 +1,6 @@
 package com.company.m03uf5pr01.controllers;
 
+import com.company.m03uf5pr01.enums.TipusAnimal;
 import com.company.m03uf5pr01.exceptions.NoAnimalsException;
 import com.company.m03uf5pr01.models.*;
 import com.company.m03uf5pr01.utils.FXutils;

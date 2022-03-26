@@ -1,5 +1,6 @@
 package com.company.m03uf5pr01.models;
 
+import com.company.m03uf5pr01.enums.TipusAnimal;
 import com.company.m03uf5pr01.interfaces.Aeri;
 
 /**
@@ -51,7 +52,7 @@ public class Au extends Animal implements Aeri {
     public boolean picotada(Animal objectiu) {
         boolean retorno = this.atacar(this.atac, objectiu);
 
-        if (this.repeticio()) {
+        if (this.repeticio() && retorno) {
             this.picotada(objectiu);
         }
 

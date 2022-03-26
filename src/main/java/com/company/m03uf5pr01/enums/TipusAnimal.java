@@ -1,4 +1,4 @@
-package com.company.m03uf5pr01.models;
+package com.company.m03uf5pr01.enums;
 
 /** Classe que enumera els tipus d'animals possibles */
 public enum TipusAnimal {

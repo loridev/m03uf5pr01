@@ -20,7 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginOrRegister.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 480);
-        stage.setTitle("Hello!");
+        stage.setTitle("Fightnimals");
         stage.setScene(scene);
         stage.setOnHiding(event -> {
             JSONutils.writeOnJSON(Globals.getPropietaris(), Paths.get(Globals.RESOURCES_PATH + "data/propietaris.json"));

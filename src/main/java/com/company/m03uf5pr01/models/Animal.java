@@ -1,8 +1,8 @@
 package com.company.m03uf5pr01.models;
 
+import com.company.m03uf5pr01.enums.TipusAnimal;
 import com.company.m03uf5pr01.interfaces.JSONable;
 import com.google.gson.Gson;
-import com.google.gson.JsonParser;
 
 /**
  * Classe que representa un Animal al joc
