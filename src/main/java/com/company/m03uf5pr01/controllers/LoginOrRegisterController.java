@@ -1,7 +1,6 @@
 package com.company.m03uf5pr01.controllers;
 import com.company.m03uf5pr01.utils.FXutils;
 import com.company.m03uf5pr01.utils.Globals;
-import com.company.m03uf5pr01.utils.JSONutils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 

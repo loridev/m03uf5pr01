@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Classe que representa un Propietari al joc
  */
-public class Propietari implements JSONable {
+public class Propietari {
     /** Nom d'un Propietari */
     private final String nom;
     /** Contrasenya d'un propietari */
@@ -21,7 +21,7 @@ public class Propietari implements JSONable {
     /** Diners d'un Propietari */
     private int diners = 50;
     /** Mascotes d'un Propietari */
-    private ArrayList<Animal> mascotes;
+    private List<Animal> mascotes;
 
     /**
      * Mètode constructor d'un Propietari
@@ -92,29 +92,11 @@ public class Propietari implements JSONable {
      *
      * @return Mascotes del propietari
      */
-    public ArrayList<Animal> getMascotes() {
+    public List<Animal> getMascotes() {
         return mascotes;
     }
 
-    public void setMascotes(ArrayList<Animal> mascotes) {
+    public void setMascotes(List<Animal> mascotes) {
         this.mascotes = mascotes;
-    }
-
-    @Override
-    public String toJSON() {
-        return new Gson().toJson(this);
-    }
-
-    public static ArrayList<Propietari> fromJSON(Reader json) {
-        return new Gson().fromJson(json, new TypeToken<ArrayList<Propietari>>() {}.getType());
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Propietari) {
-            return ((Propietari) obj).nom.equals(this.nom);
-        } else {
-            return false;
-        }
     }
 }

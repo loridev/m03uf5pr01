@@ -4,8 +4,10 @@ module com.company.m03uf5pr01 {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
-    requires java.json;
     requires com.google.gson;
+    requires java.sql;
+    requires neodatis.odb;
+    requires rt;
 
     opens com.company.m03uf5pr01 to javafx.fxml;
     exports com.company.m03uf5pr01;
